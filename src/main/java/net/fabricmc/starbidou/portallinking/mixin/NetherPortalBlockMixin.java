@@ -27,7 +27,7 @@ public abstract class NetherPortalBlockMixin extends Block implements Portal {
     @Inject(method = "getOrCreateExitPortalTarget", at = @At("HEAD"), cancellable = true)
     private void inject(ServerWorld world, Entity entity, BlockPos pos, BlockPos scaledPos, boolean inNether, WorldBorder worldBorder, CallbackInfoReturnable<TeleportTarget> cir)
     {
-        var corners = PortalHelper.getCornersVectorAt(entity.getWorld(), pos);
+        var corners = PortalHelper.getCornersVectorAt(entity.getEntityWorld(), pos);
 
         if( corners.hasLinkingBlocks())
         {

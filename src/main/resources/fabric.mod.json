@@ -28,9 +28,9 @@
   "accessWidener": "starbidous_portal_linking.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.15.11",
-    "fabric-api": ">=0.84.0",
-    "minecraft": ">=1.21",
+    "fabricloader": ">=0.17.2",
+    "fabric-api": ">=0.138.3",
+    "minecraft": ">=1.21.10",
     "java": ">=21"
   },
   "suggests": {

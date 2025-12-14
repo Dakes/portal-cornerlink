@@ -38,7 +38,7 @@ public class PortalHelper {
         Optional<PointOfInterest> pointOfInterest = findDestPortal(destWorld, destPos, destIsNether, worldBorder, corners);
         return pointOfInterest.map(poi -> {
             BlockPos blockPos = poi.getPos();
-            destWorld.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(blockPos), 3, blockPos);
+            destWorld.getChunkManager().addTicket(ChunkTicketType.PORTAL, new ChunkPos(blockPos), 3);
             BlockState blockState = destWorld.getBlockState(blockPos);
             return BlockLocating.getLargestRectangle(blockPos, blockState.get(Properties.HORIZONTAL_AXIS), 21, Direction.Axis.Y, 21, pos -> destWorld.getBlockState((BlockPos)pos) == blockState);
         });
