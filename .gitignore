@@ -31,3 +31,10 @@ bin/
 # fabric
 
 run/
+
+# nix
+
+.direnv/
+.devenv/
+result
+result-*
