@@ -1,4 +1,4 @@
-package net.fabricmc.starbidou.portallinking;
+package net.fabricmc.dakes.cornerlink;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 
 public class PortalLinking implements ModInitializer {
 
-	public static final Logger LOGGER = LoggerFactory.getLogger("starbidous_portal_linking");
-	public static final TagKey<Block> LINKING_BLOCKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of("starbidous_portal_linking", "portal_linking"));
+	public static final Logger LOGGER = LoggerFactory.getLogger("dakes_cornerlink");
+	public static final TagKey<Block> LINKING_BLOCKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of("dakes_cornerlink", "cornerlink"));
 
 	@Override
 	public void onInitialize() {

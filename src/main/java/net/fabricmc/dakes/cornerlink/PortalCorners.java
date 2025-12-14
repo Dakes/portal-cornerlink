@@ -1,4 +1,4 @@
-package net.fabricmc.starbidou.portallinking;
+package net.fabricmc.dakes.cornerlink;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;

@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "starbidous_portal_linking",
+  "id": "dakes_cornerlink",
   "version": "${version}",
 
-  "name": "Corner Portal Linking",
-  "description": "Use glazed terracotta to help linking Nether portals.",
+  "name": "Portal Cornerlink",
+  "description": "Use glazed terracotta to help link Nether portals.",
   "authors": [
-    "Starbidou (Starbender)"
+    "Dakes"
   ],
   "contact": {
-    "homepage": "https://gitlab.com/mc-starbidou/corner-portal-linking",
-    "sources": "https://gitlab.com/mc-starbidou/corner-portal-linking"
+    "homepage": "https://github.com/Dakes/portal-cornerlink",
+    "sources": "https://github.com/Dakes/portal-cornerlink"
   },
 
   "license": "LPGLv2.1",
-  "icon": "assets/starbidous_portal_linking/icon.png",
+  "icon": "assets/dakes_cornerlink/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.starbidou.portallinking.PortalLinking"
+      "net.fabricmc.dakes.cornerlink.PortalLinking"
     ]
   },
   "mixins": [
-    "starbidous_portal_linking.mixins.json"
+    "dakes_cornerlink.mixins.json"
   ],
-  "accessWidener": "starbidous_portal_linking.accesswidener",
+  "accessWidener": "dakes_cornerlink.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.17.2",

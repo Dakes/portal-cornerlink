@@ -1,7 +1,7 @@
-package net.fabricmc.starbidou.portallinking.mixin;
+package net.fabricmc.dakes.cornerlink.mixin;
 
-import net.fabricmc.starbidou.portallinking.PortalHelper;
-import net.fabricmc.starbidou.portallinking.PortalLinking;
+import net.fabricmc.dakes.cornerlink.PortalHelper;
+import net.fabricmc.dakes.cornerlink.PortalLinking;
 import net.minecraft.block.Block;
 import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.block.Portal;
