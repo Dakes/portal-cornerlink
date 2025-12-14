@@ -67,9 +67,9 @@ public class PortalHelper {
 
         PointOfInterest poi = null;
 
-        if( collection.size() > 0)
+        if(!collection.isEmpty())
         {
-            poi = getSortedPortalPOIs(collection, world, corners, destPos).findFirst().get();
+            poi = getSortedPortalPOIs(collection, world, corners, destPos).findFirst().orElse(null);
         }
 
         return Optional.ofNullable(poi);
@@ -78,29 +78,68 @@ public class PortalHelper {
 
     private static Stream<PointOfInterest> getSortedPortalPOIs(List<PointOfInterest> pointOfInterests, ServerWorld world, PortalCorners originVector, BlockPos destPos)
     {
-        HashMap<PointOfInterest, Float> map = new HashMap<>();
+        // Deduplicate POIs: multiple POIs can belong to the same portal
+        // Use portal rectangle's lowerLeft as unique key
+        HashMap<BlockPos, PointOfInterest> uniquePortals = new HashMap<>();
+        HashMap<BlockPos, PortalCorners> cornersCache = new HashMap<>();
+        HashMap<PointOfInterest, BlockPos> poiToPortalKey = new HashMap<>();
 
         for(var poi : pointOfInterests)
         {
-            // This is not very efficient because each portal tile is a poi
-            var corners = getCornersVectorAt(world, poi.getPos());
-            var score = originVector.score(corners);
-            var distance = 1f - score;
+            BlockState blockState = world.getBlockState(poi.getPos());
+            if (!blockState.contains(Properties.HORIZONTAL_AXIS)) {
+                continue;
+            }
 
-            map.put(poi, distance);
+            Direction.Axis axis = blockState.get(Properties.HORIZONTAL_AXIS);
+            BlockLocating.Rectangle rectangle = BlockLocating.getLargestRectangle(
+                poi.getPos(),
+                axis,
+                21,
+                Direction.Axis.Y,
+                21,
+                pos -> world.getBlockState((BlockPos)pos) == blockState
+            );
+
+            BlockPos portalKey = rectangle.lowerLeft;
+            poiToPortalKey.put(poi, portalKey);
+
+            // Only process each unique portal once
+            if (!uniquePortals.containsKey(portalKey)) {
+                uniquePortals.put(portalKey, poi);
+                // Cache corner calculation for this portal
+                PortalCorners corners = getCornersVector(rectangle, axis, world);
+                cornersCache.put(portalKey, corners);
+            }
         }
 
-        var comparator = Comparator.comparingDouble((PointOfInterest poi) -> map.get(poi))
-                // Followed by vanilla comparison
+        // Score only unique portals
+        HashMap<BlockPos, Float> scoreMap = new HashMap<>();
+        for (var entry : uniquePortals.entrySet()) {
+            BlockPos portalKey = entry.getKey();
+            PortalCorners corners = cornersCache.get(portalKey);
+            float score = originVector.score(corners);
+            float distance = 1f - score;
+            scoreMap.put(portalKey, distance);
+        }
+
+        // Sort by score, then by distance, then by Y coordinate
+        var comparator = Comparator.comparingDouble((PointOfInterest poi) -> scoreMap.get(poiToPortalKey.get(poi)))
                 .thenComparingDouble((PointOfInterest poi) -> poi.getPos().getSquaredDistance(destPos))
                 .thenComparingInt((PointOfInterest poi) -> poi.getPos().getY());
 
-        return pointOfInterests.stream().sorted(comparator);
+        return uniquePortals.values().stream().sorted(comparator);
     }
 
     public static PortalCorners getCornersVectorAt(World world, BlockPos position)
     {
         var blockState = world.getBlockState(position);
+
+        // Safety check: ensure the block state has the HORIZONTAL_AXIS property
+        if (!blockState.contains(Properties.HORIZONTAL_AXIS)) {
+            return new PortalCorners(); // Return empty corners if not a valid portal block
+        }
+
         var axis = blockState.get(Properties.HORIZONTAL_AXIS); // X or Z only
         var rectangle = BlockLocating.getLargestRectangle(position, axis, 21, Direction.Axis.Y, 21, pos -> world.getBlockState((BlockPos)pos) == blockState);
 
