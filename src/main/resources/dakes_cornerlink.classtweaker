@@ -1,0 +1,5 @@
+classTweaker	v1	official
+
+# Builds the teleport transition for a portal we picked ourselves. Private static in vanilla,
+# only ever called from NetherPortalBlock.getExitPortal, which we cancel.
+accessible	method	net/minecraft/world/level/block/NetherPortalBlock	getDimensionTransitionFromExit	(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/BlockUtil$FoundRectangle;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/portal/TeleportTransition$PostTeleportTransition;)Lnet/minecraft/world/level/portal/TeleportTransition;
