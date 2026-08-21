@@ -28,9 +28,11 @@ bin/
 
 *.DS_Store
 
-# fabric
+# minecraft dev runs
 
 run/
+runs/
+*/runs/
 
 # nix
 

@@ -1,6 +1,5 @@
 package net.dakes.cornerlink;
 
-import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -8,7 +7,11 @@ import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PortalLinking implements ModInitializer {
+/**
+ * Shared constants for every loader. Contains no loader-specific code — the Fabric and NeoForge
+ * entrypoints live in their own source sets and exist only to satisfy each loader's contract.
+ */
+public final class PortalLinking {
 
 	public static final String MOD_ID = "dakes_cornerlink";
 
@@ -21,8 +24,6 @@ public class PortalLinking implements ModInitializer {
 	public static final TagKey<Block> LINKING_BLOCKS =
 			TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, "cornerlink"));
 
-	@Override
-	public void onInitialize() {
-		// Everything this mod does happens through NetherPortalBlockMixin; nothing to register.
+	private PortalLinking() {
 	}
 }

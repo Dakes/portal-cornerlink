@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Dakes/portal-cornerlink",
+    "sources": "https://github.com/Dakes/portal-cornerlink"
+  },
+
+  "license": "${license}",
+  "icon": "assets/${mod_id}/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.dakes.cornerlink.fabric.CornerlinkFabric"
+    ]
+  },
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "accessWidener": "${mod_id}.classtweaker",
+
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": ">=26.1 <27",
+    "java": ">=${java_version}"
+  }
+}

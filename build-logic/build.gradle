@@ -1,0 +1,10 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+java {
+    // build-logic is an included build, so it does NOT inherit the toolchain that
+    // multiloader-common.gradle sets on the subprojects. Without this it falls back to whatever
+    // JVM Gradle happens to run on, which fails outright if that is a JRE (no javac).
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
