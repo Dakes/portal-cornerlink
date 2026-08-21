@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+plugins {
+    // Lets Gradle locate (and if necessary download) the JDK the toolchain above asks for,
+    // mirroring the root build. Included builds do not inherit the root's plugin setup.
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'build-logic'

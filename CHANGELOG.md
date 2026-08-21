@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Added
+
+- NeoForge support. The mod now ships for both Fabric and NeoForge from a shared codebase.
+
 ## 1.0.1
 
 ### Performance
