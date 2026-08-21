@@ -6,8 +6,9 @@ Control Nether portal linking by placing glazed terracotta at portal corners. Po
 **This version**: Updated to 26.2 with performance improvements (4-8x faster portal matching)
 
 > Minecraft 26.x is unobfuscated, so this branch uses Mojang's official mappings rather than Yarn
-> and requires Java 25. The `1.21.10` branch remains for older versions; a jar built for 1.21.x will
-> not load on 26.x, and vice versa.
+> and requires Java 25. The jar is built against 26.2 but loads on all of 26.x, since the vanilla
+> portal APIs it binds to are unchanged across those versions. The `1.21.10` branch remains for
+> older versions; a jar built for 1.21.x will not load on 26.x, and vice versa.
 
 ## How It Works
 
@@ -40,9 +41,9 @@ The flake provides a reproducible development environment with all required depe
 
 ## Requirements
 
-- Minecraft 26.2
+- Minecraft 26.1 – 26.x
 - Fabric Loader ≥0.19.3
-- Fabric API ≥0.158.0
+- Fabric API (any build matching your Minecraft version)
 - Java 25
 
 Fabric API is required: its resource loader is what makes the `cornerlink` block tag load. Without

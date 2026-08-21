@@ -11,4 +11,4 @@
 
 ### Other
 
-- Updated to Minecraft 26.2. Now requires Java 25.
+- Updated to Minecraft 26.x. Now requires Java 25.
