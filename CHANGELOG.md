@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+### Other
+
+- Updated to Minecraft 26.3: NeoForm `26.3-1`, Fabric API `0.161.0+26.3`, NeoForge
+  `26.3.0.7-beta` (26.3 is beta-only upstream so far). ModDevGradle moved to 2.0.147 - the
+  older NeoFormRuntime's Vineflower step runs out of memory decompiling the 26.3 jar.
+- No source changes were needed: the vanilla portal APIs the mixin binds to are unchanged in
+  26.3. Verified in game on a headless 26.3 Fabric dev server - a pig entering a portal with
+  matching glazed terracotta corners reached the matching destination portal 12 blocks away
+  rather than the nearer unmarked one, and the same rig without corners fell through to
+  vanilla.
+
 ## 1.1.0
 
 ### Added
