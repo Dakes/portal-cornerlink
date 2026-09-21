@@ -6,7 +6,7 @@ Control Nether portal linking by placing glazed terracotta at portal corners. Po
 **This version**: Minecraft 26.x on **Fabric and NeoForge**, with performance improvements (4-8x faster portal matching)
 
 > Minecraft 26.x is unobfuscated, so this branch uses Mojang's official mappings rather than Yarn
-> and requires Java 25. The jars are built against 26.2 but load on all of 26.x, since the vanilla
+> and requires Java 25. The jars are built against 26.3 but load on all of 26.x, since the vanilla
 > portal APIs they bind to are unchanged across those versions. The `1.21.10` branch remains for
 > older versions; a jar built for 1.21.x will not load on 26.x, and vice versa.
 
@@ -47,8 +47,8 @@ differ. They are kept in `common` and must stay in sync:
 ```
 
 Output:
-- `fabric/build/libs/dakes_cornerlink-fabric-26.2-1.1.0.jar`
-- `neoforge/build/libs/dakes_cornerlink-neoforge-26.2-1.1.0.jar`
+- `fabric/build/libs/dakes_cornerlink-fabric-26.3-1.1.0.jar`
+- `neoforge/build/libs/dakes_cornerlink-neoforge-26.3-1.1.0.jar`
 
 ### Development
 
@@ -72,7 +72,10 @@ nix develop  # Enter dev environment with JDK 25 and Gradle
 - Minecraft 26.1 – 26.x
 - Java 25
 - **Fabric**: Fabric Loader ≥0.19.3 and **Fabric API**
-- **NeoForge**: NeoForge for 26.x (no extra dependencies)
+- **NeoForge**: NeoForge for 26.x (no extra dependencies). The 26.3 line is still beta upstream
+  (`26.3.0.7-beta` at the time of this build; the newest stable NeoForge, `26.2.0.88`, targets
+  26.2). The jar declares `loaderVersion [4,)`, so it loads on the stable 26.3 builds when they
+  land without being rebuilt.
 
 Fabric API is required on Fabric only: its resource loader is what makes the `cornerlink` block tag
 load. Without it the mod silently falls back to vanilla portal linking. NeoForge loads mod data
